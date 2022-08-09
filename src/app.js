@@ -1,6 +1,6 @@
 //LLAMADA AL JSON
 
-const DB = "./data.json"
+const DB = "../src/data/data.json"
 
 const getData = async () => {
     const res = await fetch(DB)
@@ -61,8 +61,8 @@ const agregarAlCarrito = async (id) => {
     Toastify({
         text: "Producto agregado",
         duration: 1500,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
+        gravity: "top", 
+        position: "right", 
         style: {
             background: "linear-gradient(to right, #3eec00, #86ff5b)",
         }
@@ -89,7 +89,6 @@ function pushStorageACarrito() {
 
 let carritoHTMLContainer
 
-//RENDERIZA EL CARRITO EN HTML
 function actualizarCarritoHTML() {
 
     let carritoHTML = ""
@@ -134,8 +133,8 @@ function eliminarDelCarrito(id) {
     Toastify({
         text: "Producto eliminado",
         duration: 1500,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
+        gravity: "top", 
+        position: "right",
         style: {
             background: "linear-gradient(to right, #ff0000, #ff5b5b)",
         }
@@ -148,6 +147,7 @@ function eliminarDelCarrito(id) {
 };
 
 //FUNCION QUE CALCULA EL TOTAL DE LA COMPRA Y LO MUESTRA EN EL DOM MEDIANTE UNA VALIDACION
+
 function operacionTotal() {
 
     let costoTotal = 0
@@ -170,8 +170,10 @@ function validacionParaObtenerElTotalEnDom() {
 
 //OPCION DE FILTRADO POR CATEGORIA MARCA
 
-function filtrarPorCategoria() {
+const filtrarPorCategoria = async () => {
     let llamadoSelectFilter = document.querySelector("#btn-filter").value
+
+    const Catalogo = await getData()
 
     const Filtrado = Catalogo.filter(marca => marca.categoria == llamadoSelectFilter)
 
